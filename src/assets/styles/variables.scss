@@ -1,0 +1,110 @@
+$primary-color: #e30045;
+$secondary-color: #434343;
+$black: #000;
+$white: #fff;
+$heading-color: #090909;
+$section-bg: #f8f8f8;
+$blue: #1D4C9E;
+$grey: #484848;
+
+/************* Fonts URL *************/
+
+$heading-fonts: PROXIMANOVABOLD;
+$heading-fonts-url: '../fonts/PROXIMA NOVA BOLD.OTF';
+
+$primary-font-regular: GTWalsheimPro-Regular;
+$primary-font-regular-url: '../fonts/GTWalsheimPro-Regular.ttf';
+
+$primary-font-light: GTWalsheimPro-Light;
+$primary-font-light-url: '../fonts/GTWalsheimPro-Light.ttf';
+
+$primary-font-bold: GTWalsheimPro-Bold;
+$primary-font-bold-url: '../fonts/GTWalsheimPro-Bold.ttf';
+
+$primary-font-medium: GTWalsheimPro-Medium;
+$primary-font-medium-url: '../fonts/GTWalsheimPro-Medium.ttf';
+
+$primary-font-black: GTWalsheimPro-CondensedBlack;
+$primary-font-black-url: '../fonts/GTWalsheimPro-CondensedBlack.ttf';
+
+$cardtitle-font: HelveticaNeueLTProBoldCondensed;
+$cardtitle-font-url: '../fonts/HelveticaNeueLTPro-BdCn.otf';
+
+$subheading-font: PROXIMANOVASEMIBOLD;
+$subheading-font-url: '../fonts/Proxima-Nova-Semibold.ttf';
+
+
+@font-face {
+  font-family: HelveticaNeueLTPro;
+  src: url('../fonts/HelveticaNeueLTPro-HvCn.otf');
+}
+@mixin helveticaNeueFont {
+  font-family: HelveticaNeueLTPro;
+}
+@font-face {
+  font-family: TungstenBold;
+  src: url('../fonts/Tungsten-Bold.ttf');
+}
+@mixin TungstenBold {
+  font-family: TungstenBold;
+}
+@font-face {
+  font-family: TungstenSemiBold;
+  src: url('../fonts/Tungsten-SemiBold.ttf');
+}
+@font-face {
+  font-family: NoteworthyBold;
+  src: url('../fonts/Noteworthy-Bold.ttf');
+}
+@font-face {
+  font-family: HelveticaNeueLTPro-medium;
+  src: url('../fonts/Helvetica Neue LT Pro 67 Medium Condensed.otf');
+}
+@mixin TungstenSemiBold {
+  font-family: TungstenSemiBold;
+}
+
+
+@mixin NoteworthyBold {
+  font-family: NoteworthyBold;
+}
+
+/*--------------------------------------------------------------
+# Font Family
+---------------------------------------------------------------*/
+
+@font-face {
+  font-family: $heading-fonts;
+  src: url($heading-fonts-url);
+}
+
+@font-face {
+  font-family: $primary-font-regular;
+  src: url($primary-font-regular-url);
+}
+
+@font-face {
+  font-family: $primary-font-light;
+  src: url($primary-font-light-url);
+}
+
+@font-face {
+  font-family: $primary-font-bold;
+  src: url($primary-font-bold-url);
+}
+@font-face {
+  font-family: $primary-font-medium;
+  src: url($primary-font-medium-url);
+}
+@font-face {
+  font-family: $primary-font-black;
+  src: url($primary-font-black-url);
+}
+@font-face {
+  font-family: $cardtitle-font;
+  src: url($cardtitle-font-url);
+}
+@font-face {
+  font-family: $subheading-font;
+  src: url($subheading-font-url);
+}
