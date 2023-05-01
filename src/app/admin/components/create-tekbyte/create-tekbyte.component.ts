@@ -145,6 +145,11 @@ export class CreateTekByteComponent implements OnInit, AfterViewInit {
     const formArray = this.tekByteFormGroup?.get('keyConcepts') as FormArray;
     return formArray.controls as FormGroup[];
   }
+
+  get challenges(): FormGroup[] {
+    const formArray = this.tekByteFormGroup?.get('challenges') as FormArray;
+    return formArray.controls as FormGroup[];
+  }
   addStoryFormArray() {
     if (this.timeline.length < 10) {
       const timelineGp = this.fb.group({

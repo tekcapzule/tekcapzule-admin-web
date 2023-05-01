@@ -395,7 +395,7 @@
               />
             </div>
             <ng-container formArrayName="challenges">
-              <!--ng-container *ngFor="let challenge of metadata?.expiryInterval; let i = index">
+              <ng-container *ngFor="let challenge of challenges; let i = index">
                 <div [formGroup]="challenge" class="innerCardSection">
                   <div class="form-group">
                     <div class="d-flex justify-content-between">
@@ -405,7 +405,7 @@
                           <img src="../../../../assets/images/drag.png" alt="add" />
                         </a>
                         <a
-                          *ngIf="challenges.controls.length > 1"
+                          *ngIf="challenges.length > 1"
                           (click)="onDeleteArrayItem(i, 'challenges')"
                           href="javascript:void(0);"
                           ><img width="15" src="../../../../assets/images/trash.svg" alt="add"
@@ -427,7 +427,7 @@
                     </textarea>
                   </div>
                 </div>
-              </ng-container-->
+              </ng-container>
             </ng-container>
           </div>
           <div *ngIf="tabIndex === 7" id="storysofar">
