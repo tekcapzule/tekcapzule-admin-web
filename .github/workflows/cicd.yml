@@ -20,7 +20,7 @@ jobs:
       - name: Install dependencies
         run: npm install --force
       - name: Build Angular App
-        run: npm run build:staging
+        run: npm run build:development
   setupDevInfra:
     name: Setup Dev Hosting Infra
     needs: Build
