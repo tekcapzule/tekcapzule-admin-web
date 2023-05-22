@@ -19,7 +19,7 @@ export class URLService {
   getURLByCardName(uniqueId: string): string {
     let path = '';
     if(uniqueId === 'user') {
-      path = `${API_PATH}/users`
+      path = `${API_PATH}/user`
       .replace('{{api-gateway}}', environment.userApiGateway);
     } else if(uniqueId === 'subscription') {
       path = `${API_PATH}/subscription`

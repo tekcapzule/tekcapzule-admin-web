@@ -12,7 +12,7 @@ export const environment = {
   subscriptionApiGateway: 'jianrwq924',
   topicApiGateway: 'ydfobf5vfd',
   tekByteApiGateway: '66ja8b3hcl',
-  userApiGateway: 'x5jyub91a3',
+  userApiGateway: '74vkqts9ye',
   awsRegion: 'execute-api.us-east-1',
   apiEndpointTemplate: 'https://{{api-gateway}}.{{aws-region}}.amazonaws.com/dev',
 };
