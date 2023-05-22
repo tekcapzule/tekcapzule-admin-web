@@ -12,7 +12,7 @@ import { SubscriptionComponent } from './components/subscription/subscription.co
 
 const routes: Routes = [
   {
-    path: '',
+    path: 'admin',
     component: AdminPageComponent,
     children: [
       {
