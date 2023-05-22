@@ -343,10 +343,15 @@ h4 {
     // position: relative;
     top: -25px;
     color: $primary-color !important;
+    cursor: pointer;
+    &:last-child {
+      color: $black !important;
+      cursor: default;
+    }
     &:nth-child(2) {
       padding-left: 25px;
     }
-    &:after {
+    &:not(:last-child):after {
       content: '';
       background: url('../images/hamburger-arrow.svg') center right no-repeat;
       width: 17px;
@@ -646,35 +651,59 @@ select {
   background-position-x: 96%;
 }
 
+
 /********Loader*************/
+// Loader Animation
+
+$offset: 187;
+$duration: 1.4s;
+
 .spinner {
-  margin: auto;
-  width: 100%;
-  height: 100vh;
-  text-align: center;
-  top: 50%;
-  background: url('../images/loader.gif') 50% 50% no-repeat;
-  content: 'Loading...';
+  animation: rotator $duration linear infinite;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
 }
 
-.app-spinner {
-  width: 100vw;
-  height: 100vh;
-  position: fixed;
-  top: 0;
-  left: 0;
-  background: #000;
-  opacity: 0.7;
-  text-align: center;
-  z-index: 999;
-  > img {
-    width: 140px;
-    height: 140px;
-    top: 40%;
-    position: relative;
-    z-index: 1000;
-  }
+@keyframes rotator {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(270deg); }
 }
+
+.path {
+  stroke-dasharray: $offset;
+  stroke-dashoffset: 0;
+  transform-origin: center;
+  animation:
+    dash $duration ease-in-out infinite, 
+    colors ($duration*4) ease-in-out infinite;
+}
+
+@keyframes colors {
+	0% { stroke: #4285F4; }
+	25% { stroke: #DE3E35; }
+	50% { stroke: #F7C223; }
+	75% { stroke: #1B9A59; }
+  100% { stroke: #4285F4; }
+}
+
+@keyframes dash {
+ 0% { stroke-dashoffset: $offset; }
+ 50% {
+   stroke-dashoffset: $offset/4;
+   transform:rotate(135deg);
+ }
+ 100% {
+   stroke-dashoffset: $offset;
+   transform:rotate(450deg);
+ }
+}
+app-spinner {
+    position: fixed;
+    z-index: 999;
+    width: 100%;
+}
+
 
 /*--------------------------------------------------------------
 # Global Search Menu

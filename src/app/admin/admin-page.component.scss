@@ -8,6 +8,10 @@
   .container {
     max-width: 1600px;
   }
+  .page-title {
+    font-size: 25px;
+    font-family: $cardtitle-font;
+  }
   h1 {
     font-family: $cardtitle-font;
     font-size: 32px;

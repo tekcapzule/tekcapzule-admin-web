@@ -18,6 +18,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatTabsModule } from '@angular/material/tabs';
 import {MatChipsModule} from '@angular/material/chips';
 import { MessageService } from 'primeng/api';
+import { SubscriptionComponent } from './components/subscription/subscription.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { MessageService } from 'primeng/api';
     TekByteComponent,
     FeedbackComponent,
     CreateCapsuleComponent,
-    CreateTekByteComponent
+    CreateTekByteComponent,
+    SubscriptionComponent
   ],
   imports: [
     CommonModule,

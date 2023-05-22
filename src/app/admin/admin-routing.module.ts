@@ -8,6 +8,7 @@ import { CreateCapsuleComponent } from './components/create-capsule/create-capsu
 import { CreateTekByteComponent } from './components/create-tekbyte/create-tekbyte.component';
 import { FeedbackComponent } from './components/feedback/feedback.component';
 import { TekByteComponent } from './components/tekbyte/tekbyte.component';
+import { SubscriptionComponent } from './components/subscription/subscription.component';
 
 const routes: Routes = [
   {
@@ -34,10 +35,10 @@ const routes: Routes = [
         path: 'editcapsule',
         component: CreateCapsuleComponent,
       },
-      /*{
-        path: 'createquestions',
-        component: CreateQuestionsComponent,
-      },*/
+      {
+        path: 'subscription',
+        component: SubscriptionComponent,
+      },
       {
         path: 'createtekbyte',
         component: CreateTekByteComponent,

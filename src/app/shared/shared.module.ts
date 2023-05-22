@@ -11,12 +11,14 @@ import { MessageService } from 'primeng/api';
 
 import { HeaderComponent } from './components/header/header.component';
 import { DataTableComponent } from './components/data-table/data-table.component';
+import { SpinnerComponent } from './components/spinner/spinner.component';
 
 
 @NgModule({
   declarations: [
     HeaderComponent,
-    DataTableComponent
+    DataTableComponent,
+    SpinnerComponent
   ],
   imports: [
     CommonModule,
@@ -30,7 +32,8 @@ import { DataTableComponent } from './components/data-table/data-table.component
   ],
   exports: [
     HeaderComponent,
-    DataTableComponent
+    DataTableComponent,
+    SpinnerComponent
   ],
   providers: [
     MessageService

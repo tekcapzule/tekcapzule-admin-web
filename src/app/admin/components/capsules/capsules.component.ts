@@ -1,11 +1,13 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { finalize } from 'rxjs/operators';
 
-import { CapsuleItem, CapsuleStatus, ColumnDef } from '@app/shared/models';
+import { CapsuleItem, CapsuleStatus, ColumnDef, NavTab } from '@app/shared/models';
 import { AdminCapsuleDataItem, AdminCapsuleDataItemImpl } from '@app/admin/models';
 import { AppSpinnerService, CapsuleApiService, ChannelEvent, EventChannelService } from '@app/core';
 import { Router } from '@angular/router';
 import { DataTableComponent } from '@app/shared/components/data-table/data-table.component';
+import { Constants } from '@app/shared/utils';
+import { Card } from '@app/shared/models/card.model';
 
 @Component({
   selector: 'app-capsules',
@@ -101,7 +103,8 @@ export class CapsulesComponent implements OnInit {
       ],
     },
   ];
-
+  crumbs: NavTab[] = [Constants.DashboardCard];
+  cards: Card[] = Constants.Cards;
   @ViewChild('capsuleTable') capsuleTable: DataTableComponent;
 
   capsulePendingApproval: CapsuleItem[] = [];
@@ -114,6 +117,7 @@ export class CapsulesComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.crumbs.push(this.cards.find(c => c.uniqueId === 'capsule'));
     sessionStorage.removeItem('capsuleItem');
     this.showAdminCapsulesTab();
     this.fetchPendingApprovalCapsules();
@@ -167,5 +171,9 @@ export class CapsulesComponent implements OnInit {
 
   onSearch(event) {
     this.capsuleTable.onSearch(event.currentTarget.value);
+  }
+  
+  navigateToCapsulePage(url: string): void {
+    this.router.navigate([url]);
   }
 }

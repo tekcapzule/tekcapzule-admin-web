@@ -1,6 +1,7 @@
 <app-spinner></app-spinner>
 
 <div class="admin-feedback-table">
+  
   <div class="col-lg-3 float-left">
     <div class="search-box">
       <input type="search" name="search" placeholder="What are you looking for?" (keyup)="onSearch($event)"/>
@@ -8,5 +9,5 @@
     </div>
   </div>
   
-  <app-data-table #feedbackTable [columns]="feedbackColumns" [data]="feedbackData"></app-data-table>
+  <app-data-table #subscriptionTable [columns]="subscriptionColumns" [data]="subscriptionData"></app-data-table>
 </div>

@@ -111,4 +111,8 @@ export class TekByteComponent implements OnInit {
   onSearch(event) {
     this.tekByteTable.onSearch(event.currentTarget.value);
   }
+  
+  navigateToCapsulePage(url: string): void {
+    this.router.navigate([url]);
+  }
 }
