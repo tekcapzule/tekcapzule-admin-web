@@ -13,33 +13,11 @@
           <a [routerLink]="['/']" data-toggle="collapse" data-target=".navbar-collapse.show"
             routerLinkActive="active"><img src="/assets/images/logo.svg" /></a>
         </div>
-        <div class="page-name" *ngIf="isMobileResolution && selectedMenuItem?.uniqueId !== 'HOME'">
-          <span>{{selectedMenuItem?.displayName}}</span>
+        <div class="page-name">
+          <span>Admin</span>
         </div>
 
-        <div class="collapse navbar-collapse nav-menu" id="navbarNav">
-
-          <ul class="navbar-nav">
-            <ng-container *ngFor="let hm of headerMenu; let i=index">
-              <li [ngClass]="{'dropdown': isMobileResolution && hm.children, 'active': selectedMenuItem.uniqueId === hm.uniqueId}"
-                *ngIf="hm.showOnMobile ? isMobileResolution : true">
-                <a *ngIf="hm.uniqueId !== 'Skill_Studio'" href="Javascript:void(0)" class="pe-none"
-                  (click)="onMenuClick(hm)">{{hm.displayName}}
-                  <span *ngIf="isMobileResolution && hm.children && selectedMenuItem.uniqueId === 'My_Feeds'"
-                    [ngClass]="{'parent-menu': isMobileResolution && hm.children}" class="caret"></span></a>
-
-                <ng-container *ngIf="isMobileResolution && hm.children && openedMenuItem?.uniqueId === 'My_Feeds'">
-                  <ul class="dropdown-menu show">
-                    <li *ngFor="let menuItem of hm.children; let i=index">
-                      <a href="Javascript:void(0)" (click)="onChildMenuClick(menuItem)">{{menuItem.displayName}}</a>
-                    </li>
-                  </ul>
-                </ng-container>
-
-              </li>
-            </ng-container>
-          </ul>
-        </div>
+        
       </nav>
     </div>
   </div>

@@ -10,14 +10,12 @@ import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
 
 import { HeaderComponent } from './components/header/header.component';
-import { FooterComponent } from './components/footer/footer.component';
 import { DataTableComponent } from './components/data-table/data-table.component';
 
 
 @NgModule({
   declarations: [
     HeaderComponent,
-    FooterComponent,
     DataTableComponent
   ],
   imports: [
@@ -32,7 +30,6 @@ import { DataTableComponent } from './components/data-table/data-table.component
   ],
   exports: [
     HeaderComponent,
-    FooterComponent,
     DataTableComponent
   ],
   providers: [

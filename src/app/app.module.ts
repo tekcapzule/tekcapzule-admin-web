@@ -14,6 +14,8 @@ import { MessageService } from 'primeng/api';
 import { SharedModule } from './shared';
 import { CoreModule } from './core';
 import { AuthModule } from './auth';
+import { DashboardModule } from './dashboard/dashboard.module';
+import { URLService } from './core/services/common/url.service';
 
 @NgModule({
   declarations: [
@@ -23,6 +25,7 @@ import { AuthModule } from './auth';
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
+    DashboardModule,
     AdminModule,
     CoreModule,
     SharedModule,
@@ -33,6 +36,7 @@ import { AuthModule } from './auth';
     { provide: HTTP_INTERCEPTORS, useClass: CacheInterceptor, multi: true },
     AuthGuard,
     MessageService,
+    URLService,
     HelperService
   ],
   bootstrap: [AppComponent]
