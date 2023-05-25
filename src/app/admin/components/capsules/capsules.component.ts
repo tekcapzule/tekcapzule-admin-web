@@ -103,10 +103,7 @@ export class CapsulesComponent implements OnInit {
       ],
     },
   ];
-  crumbs: NavTab[] = [Constants.DashboardCard];
-  cards: Card[] = Constants.Cards;
   @ViewChild('capsuleTable') capsuleTable: DataTableComponent;
-
   capsulePendingApproval: CapsuleItem[] = [];
 
   constructor(
@@ -117,7 +114,6 @@ export class CapsulesComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.crumbs.push(this.cards.find(c => c.uniqueId === 'capsule'));
     sessionStorage.removeItem('capsuleItem');
     this.showAdminCapsulesTab();
     this.fetchPendingApprovalCapsules();
@@ -139,9 +135,8 @@ export class CapsulesComponent implements OnInit {
   }
 
   editActionCallback(row: CapsuleItem): void {
-    //console.log('editActionCallback: ', row);
     sessionStorage.setItem('capsuleItem', JSON.stringify(row));
-    this.router.navigate(['/editcapsule']);
+    this.router.navigate(['admin/capsule/editcapsule']);
   }
 
   deleteActionCallback(row: CapsuleItem): void {
@@ -174,6 +169,6 @@ export class CapsulesComponent implements OnInit {
   }
   
   navigateToCapsulePage(url: string): void {
-    this.router.navigate([url]);
+    this.router.navigateByUrl(url);
   }
 }

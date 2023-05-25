@@ -871,37 +871,70 @@ iframe .navbar-container,
   padding-top: 45px;
 }
 
+
 /********Toast********/
-.p-toast .p-toast-message{
-  &.p-toast-message-success {
-    background: #b5eacc !important;
-    border: 1px solid #00a64e !important;
-    /* border-width: 0 0 0 6px; */
-    color: #000 !important;
-    border-bottom: 5px solid #00a64e !important;
+.p-toast-top-center {
+  top: 76px !important;
+}
+.p-toast {
+  top: 80px !important;
+  opacity: 1 !important;
+  @media only screen and (max-width: 990px) { 
+  width: 95% !important;
   }
-  &.p-toast-message-success .p-toast-message-icon, .p-toast .p-toast-message.p-toast-message-success .p-toast-icon-close {
+}
+
+.p-toast .p-toast-message {
+  -webkit-box-shadow: 0px 0px 16px 0px rgb(129 129 129) !important;
+  -moz-box-shadow: 0px 0px 16px 0px rgb(129 129 129) !important;
+  box-shadow:0px 0px 16px 0px rgb(129 129 129) !important;
+  border-radius: 30px !important;
+  &.p-toast-message-success, &.p-toast-message-error {
+    background: #fff !important;
+    border-width: 0 !important;
+  }
+  &.p-toast-message-error .p-toast-message-icon {
+    color: $primary-color !important;
+  }
+  &.p-toast-message-success .p-toast-message-icon,
+  .p-toast .p-toast-message.p-toast-message-success .p-toast-icon-close {
     background: #00a64e !important;
     border-radius: 40px !important;
     color: #fff !important;
     padding: 0px 6px !important;
     width: 2rem;
+    height: 2rem;
   }
+  
   .p-toast-message-content .p-toast-message-text {
-    font-family: 'GTWalsheimPro-Medium', sans-serif;
-    font-size: 16px;
+    font-family: $subheading-font;
+    font-size: 18px;
+    color: #151515 !important;
+    @media only screen and (max-width: 990px) { 
+      font-size: 15px;
+    }
+    .p-toast-detail {
+      margin-top: 0.2rem !important;
+    }
   }
   .pi-check:before {
     font-size: 20px;
-    top: -3px!important;
+    top: -3px !important;
     position: relative;
-}
-.pi-times:before {
-  font-size: 20px;
-  color: #000;
-}
-&.p-toast-icon-close:hover {
-  background: none;
+    @media only screen and (max-width: 990px) {
+      top: 5px !important;
+    }
+  }
+  .pi-times:before {
+    font-size: 20px;
+    color: #000;
+    right: 5px !important;
+    position: absolute !important;
+    top: 8px !important;
+  }
+  &.p-toast-icon-close:hover {
+    background: none;
+    width: 40px !important;
+  }
 }
 
-}

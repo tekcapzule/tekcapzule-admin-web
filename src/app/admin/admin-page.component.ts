@@ -20,7 +20,13 @@ export class AdminPageComponent implements OnInit, OnDestroy {
   constructor(private router: Router) {}
 
   ngOnInit(): void {
-    this.crumbs.push(this.cards.find(c => this.router.url.includes(c.navUrl)));
+    const page = Constants.Pages.find(c => this.router.url.includes(c.navUrl));
+    if(page) {
+      this.crumbs[0] = this.cards.find(c => c.uniqueId === page.navUrl.split('/')[1]);
+      this.crumbs.push(page);
+    } else {
+      this.crumbs.push(this.cards.find(c => this.router.url.includes(c.navUrl)));
+    }
   }
 
   ngOnDestroy(): void {

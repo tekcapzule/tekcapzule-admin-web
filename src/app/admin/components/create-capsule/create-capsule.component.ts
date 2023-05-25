@@ -17,7 +17,6 @@ import { MessageService } from 'primeng/api';
   styleUrls: ['./create-capsule.component.scss'],
 })
 export class CreateCapsuleComponent implements OnInit, AfterViewInit {
-
   capsuleFormGroup: FormGroup;
   isCreateCapsuleSubmitted: boolean;
   isEditMode: boolean;
@@ -38,7 +37,8 @@ export class CreateCapsuleComponent implements OnInit, AfterViewInit {
     private fb: FormBuilder,
     private router: Router,
     private topicApi: TopicApiService,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private helperService: HelperService
   ) { }
 
   ngOnInit() {
@@ -49,6 +49,8 @@ export class CreateCapsuleComponent implements OnInit, AfterViewInit {
       this.isEditMode = true;
       this.editCapsule = JSON.parse(sessionStorage.getItem('capsuleItem'));
       this.capsuleFormGroup.patchValue(this.editCapsule);
+      this.tagsValue = this.editCapsule.tags;
+      this.capsuleFormGroup.get('tags').setValue([]);
     }
   }
 
@@ -80,14 +82,15 @@ export class CreateCapsuleComponent implements OnInit, AfterViewInit {
       author: [, Validators.required],
       description: ['', Validators.required],
       publisher: ['', Validators.required],
-      resourceURL: ['', Validators.required],
+      resourceUrl: ['', Validators.required],
       type: ['', Validators.required],
       audience: [''],
       level: ['', Validators.required],
       expiryDate: [moment().format('DD/MM/YYYY'), Validators.required],
       expiryDateDisp: ['', Validators.required],
       editorsPick: [true],
-      tags: ['']
+      tags: [[]],
+      keyPoints: [[]]
     })
   }
 
@@ -112,11 +115,15 @@ export class CreateCapsuleComponent implements OnInit, AfterViewInit {
       const selectedDays = this.expiryCode.find(ex=> ex.name === requestBody.expiryDateDisp);
       requestBody.expiryDate = moment().add(selectedDays.value, 'days').format("DD/MM/YYYY");
       requestBody.editorsPick = requestBody.editorsPick ? 1 : 0;
-      requestBody.tags = this.tagsValue.toString();
+      console.log('this.tagsValue -->> ',this.tagsValue);
+      requestBody.tags = this.tagsValue;
+      delete requestBody.expiryDateDisp;
+      //delete requestBody.expiryDateDisp;
       this.isCreateCapsuleSubmitted = false;
       if(this.editCapsule) {
         this.updateCapsule(requestBody);
       } else {
+        delete requestBody.capsuleId;
         this.createCapsule(requestBody);
       }
     }
@@ -125,11 +132,11 @@ export class CreateCapsuleComponent implements OnInit, AfterViewInit {
   updateCapsule(requestBody) {
     this.capsuleApi.updateCapsule(requestBody).subscribe(data => {
       this.isCreateCapsuleSubmitted = true;
-      this.messageService.add({ key: 'tc', severity: 'success', summary: 'Success', detail: 'Capsule updated successfully'});
+      this.helperService.showSuccess(this.messageService, 'Capsule updated successfully');
       this.spinner.hide();
     }, error => {
       console.log('ERR --- ',error);
-      this.messageService.add({ key: 'tc', severity: 'error', summary: 'Error', detail: 'Something went wrong. Please try after sometime'});
+      this.helperService.showError(this.messageService);
       this.spinner.hide();
     });
   }
@@ -137,12 +144,12 @@ export class CreateCapsuleComponent implements OnInit, AfterViewInit {
   createCapsule(requestBody) {
     this.capsuleApi.createCapsule(requestBody).subscribe(data => {
       this.capsuleFormGroup.reset();
-      this.messageService.add({ key: 'tc', severity: 'success', summary: 'Success', detail: 'Capsule created successfully'});
+      this.helperService.showSuccess(this.messageService, 'Capsule created successfully');
       this.isCreateCapsuleSubmitted = true;
       this.spinner.hide();
     }, error => {
       console.log('ERR --- ',error);
-      this.messageService.add({ key: 'tc', severity: 'error', summary: 'Error', detail: 'Something went wrong. Please try after sometime'});
+      this.helperService.showError(this.messageService);
       this.spinner.hide();
     });
   }
@@ -195,6 +202,4 @@ export class CreateCapsuleComponent implements OnInit, AfterViewInit {
       this.tagsValue.splice(index, 1);
     }    
   }
-
-
 }

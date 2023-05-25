@@ -20,7 +20,7 @@ const routes: Routes = [
         component: CapsulesComponent,
       },
       {
-        path: 'tekByte',
+        path: 'tekbyte',
         component: TekByteComponent,
       },
       {
@@ -28,11 +28,11 @@ const routes: Routes = [
         component: FeedbackComponent,
       },
       {
-        path: 'createcapsule',
+        path: 'capsule/createcapsule',
         component: CreateCapsuleComponent,
       },
       {
-        path: 'editcapsule',
+        path: 'capsule/editcapsule',
         component: CreateCapsuleComponent,
       },
       {
@@ -40,11 +40,11 @@ const routes: Routes = [
         component: SubscriptionComponent,
       },
       {
-        path: 'createtekbyte',
+        path: 'tekbyte/createtekbyte',
         component: CreateTekByteComponent,
       },
       {
-        path: 'edittekbyte',
+        path: 'tekbyte/edittekbyte',
         component: CreateTekByteComponent,
       },
       {

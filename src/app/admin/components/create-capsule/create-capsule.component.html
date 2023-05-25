@@ -3,15 +3,9 @@
 <div class="create-capsule-page">
   <div class="card flex justify-content-center gap-2">
     <p-toast position="top-center" key="tc"></p-toast>
-  </div>  
+  </div>
 
-  <div class="container pt-5">
-    <div class="back-link pt-0">
-      <a (click)="showAdminCapsulesTab()" [routerLink]="['../capsules']">Admin</a
-      ><span>{{ isEditMode ? 'Edit' : 'Create' }} Capsule</span>
-    </div>
-
-    <h2 class="text-center">{{ isEditMode ? 'Edit' : 'Create' }} Capsule</h2>
+  <div *ngIf="capsuleFormGroup" class="container pt-5">
     <div [formGroup]="capsuleFormGroup" class="justify-content-center">
       <div class="title">Capsule Front Side Information</div>
       <div class="row">
@@ -322,23 +316,23 @@
             class="form-field form-group"
             [ngClass]="{
               'error-text':
-                capsuleFormGroup.get('resourceURL').touched &&
-                capsuleFormGroup.get('resourceURL').invalid
+                capsuleFormGroup.get('resourceUrl').touched &&
+                capsuleFormGroup.get('resourceUrl').invalid
             }"
           >
-            <label for="resourceURL">Resource URL</label>
+            <label for="resourceUrl">Resource URL</label>
             <input
               type="text"
-              name="resourceURL"
-              formControlName="resourceURL"
+              name="resourceUrl"
+              formControlName="resourceUrl"
               class="form-control"
               placeholder="Enter Resources URL"
             />
             <span
               class="error-msg"
               *ngIf="
-                capsuleFormGroup.get('resourceURL').touched &&
-                capsuleFormGroup.get('resourceURL').invalid
+                capsuleFormGroup.get('resourceUrl').touched &&
+                capsuleFormGroup.get('resourceUrl').invalid
               "
               >Please enter resource url.</span
             >
@@ -397,7 +391,7 @@
           <button
             class="button secondary-btn-md mb-3 mr-3"
             (click)="showAdminCapsulesTab()"
-            [routerLink]="['capsules']"
+            [routerLink]="['admin/capsule']"
           >
             Cancel
           </button>

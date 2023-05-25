@@ -17,12 +17,12 @@ export class HelperService {
     private messageService: MessageService) {
   }
 
-  showSuccess(msg) {
-    this.messageService.add({ key: 'tc', severity: 'success', summary: 'Success', detail: msg });
+  showSuccess(messageService, msg) {
+    messageService.add({ key: 'tc', severity: 'success', summary: 'Success', detail: msg });
   }
 
-  showError(msg) {
-    this.messageService.add({ key: 'tc', severity: 'error', summary: 'Error', detail: msg });
+  showError(messageService) {
+    messageService.add({ key: 'tc', severity: 'error', summary: 'Error', detail: 'Oops! Something went wrong!' });
   }
 
   getCount(uniquId: string): Observable<any> {

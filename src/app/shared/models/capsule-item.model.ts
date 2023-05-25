@@ -13,6 +13,7 @@ export interface CapsuleItem {
   recommendations: number;
   resourceUrl: string;
   tags: string[];
+  keyPoints: string[];
   title: string;
   topicCode: string;
   type: string;
