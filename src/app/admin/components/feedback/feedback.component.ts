@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { ColumnDef } from '@app/shared/models';
 import { AdminFeedbackDataItem } from '@app/admin/models';
 import { DataTableComponent } from '@app/shared/components/data-table/data-table.component';
+import { AppSpinnerService, FeedbackApiService } from '@app/core';
 
 @Component({
   selector: 'app-feedback',
@@ -42,26 +43,23 @@ export class FeedbackComponent implements OnInit {
     },
   ];
 
-  feedbackData: AdminFeedbackDataItem[] = [
-    {
-      firstName: 'Akhil',
-      lastName: 'PB',
-      email: 'akhilpb@apache.org',
-      subject: 'Tekcapsule Team',
-    },
-    {
-      firstName: 'Linjith',
-      lastName: 'Kunnon',
-      email: 'linjithkunnon@gmail.com',
-      subject: 'Tekcapsule Team',
-    },
-  ];
+  feedbackData: AdminFeedbackDataItem[] = [];
 
   @ViewChild('feedbackTable') feedbackTable: DataTableComponent;
 
-  constructor() {}
+  constructor(private spinner: AppSpinnerService, private feedbackService: FeedbackApiService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.spinner.show();
+    this.feedbackService.getAllFeedback().subscribe(data => {
+      if(data) {
+        this.feedbackData = data;
+        this.spinner.hide();
+      }
+    }, error => {
+      this.spinner.hide();
+    });
+  }
 
   actionCallback(row: AdminFeedbackDataItem): void {
     // console.log('actionCallback: ', row);

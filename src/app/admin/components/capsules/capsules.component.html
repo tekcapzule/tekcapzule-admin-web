@@ -1,10 +1,21 @@
+<app-spinner></app-spinner>
 <div class="admin-capsules-table">
-  <div class="col-lg-3 float-left">
-    <div class="search-box">
-      <input type="search" name="search" placeholder="What are you looking for?" (keyup)="onSearch($event)"/>
-      <!--button title="search bar" class="search-btn" (click)="onSearch($event)"></button-->
+  <div class="col-lg-6 col-md-6 col-sm-12 resp-btn">
+    <div class="col-lg-3 float-left">
+      <div class="search-box">
+        <input type="search" name="search" placeholder="What are you looking for?" (keyup)="onSearch($event)"/>
+      </div>
+    </div>
+  
+    <div class="float-right p-3">
+      <button mat-stroked-button class="button secondary-btn-sm action-btn" (click)="navigateToCapsulePage('admin/capsule/createcapsule')">
+        Create Capsule
+      </button>
     </div>
   </div>
-  
-  <app-data-table #capsuleTable [columns]="capsuleColumns" [data]="capsulePendingApproval"></app-data-table>
+
+  <div>
+    
+    <app-data-table #capsuleTable [columns]="capsuleColumns" [data]="capsulePendingApproval"></app-data-table>
+  </div>
 </div>

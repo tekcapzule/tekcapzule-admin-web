@@ -55,6 +55,12 @@ export interface AdminFeedbackDataItem {
   email: string;
   subject: string;
 }
+export interface SubscriptionDataItem {
+  email: string;
+  status: string;
+  channel: string;
+  activeSince: string;
+}
 
 export enum AdminTopicStatus {
   Success = 'SUCCESS',

@@ -343,10 +343,15 @@ h4 {
     // position: relative;
     top: -25px;
     color: $primary-color !important;
+    cursor: pointer;
+    &:last-child {
+      color: $black !important;
+      cursor: default;
+    }
     &:nth-child(2) {
       padding-left: 25px;
     }
-    &:after {
+    &:not(:last-child):after {
       content: '';
       background: url('../images/hamburger-arrow.svg') center right no-repeat;
       width: 17px;
@@ -646,35 +651,59 @@ select {
   background-position-x: 96%;
 }
 
+
 /********Loader*************/
+// Loader Animation
+
+$offset: 187;
+$duration: 1.4s;
+
 .spinner {
-  margin: auto;
-  width: 100%;
-  height: 100vh;
-  text-align: center;
-  top: 50%;
-  background: url('../images/loader.gif') 50% 50% no-repeat;
-  content: 'Loading...';
+  animation: rotator $duration linear infinite;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
 }
 
-.app-spinner {
-  width: 100vw;
-  height: 100vh;
-  position: fixed;
-  top: 0;
-  left: 0;
-  background: #000;
-  opacity: 0.7;
-  text-align: center;
-  z-index: 999;
-  > img {
-    width: 140px;
-    height: 140px;
-    top: 40%;
-    position: relative;
-    z-index: 1000;
-  }
+@keyframes rotator {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(270deg); }
 }
+
+.path {
+  stroke-dasharray: $offset;
+  stroke-dashoffset: 0;
+  transform-origin: center;
+  animation:
+    dash $duration ease-in-out infinite, 
+    colors ($duration*4) ease-in-out infinite;
+}
+
+@keyframes colors {
+	0% { stroke: #4285F4; }
+	25% { stroke: #DE3E35; }
+	50% { stroke: #F7C223; }
+	75% { stroke: #1B9A59; }
+  100% { stroke: #4285F4; }
+}
+
+@keyframes dash {
+ 0% { stroke-dashoffset: $offset; }
+ 50% {
+   stroke-dashoffset: $offset/4;
+   transform:rotate(135deg);
+ }
+ 100% {
+   stroke-dashoffset: $offset;
+   transform:rotate(450deg);
+ }
+}
+app-spinner {
+    position: fixed;
+    z-index: 999;
+    width: 100%;
+}
+
 
 /*--------------------------------------------------------------
 # Global Search Menu
@@ -842,37 +871,70 @@ iframe .navbar-container,
   padding-top: 45px;
 }
 
+
 /********Toast********/
-.p-toast .p-toast-message{
-  &.p-toast-message-success {
-    background: #b5eacc !important;
-    border: 1px solid #00a64e !important;
-    /* border-width: 0 0 0 6px; */
-    color: #000 !important;
-    border-bottom: 5px solid #00a64e !important;
+.p-toast-top-center {
+  top: 76px !important;
+}
+.p-toast {
+  top: 80px !important;
+  opacity: 1 !important;
+  @media only screen and (max-width: 990px) { 
+  width: 95% !important;
   }
-  &.p-toast-message-success .p-toast-message-icon, .p-toast .p-toast-message.p-toast-message-success .p-toast-icon-close {
+}
+
+.p-toast .p-toast-message {
+  -webkit-box-shadow: 0px 0px 16px 0px rgb(129 129 129) !important;
+  -moz-box-shadow: 0px 0px 16px 0px rgb(129 129 129) !important;
+  box-shadow:0px 0px 16px 0px rgb(129 129 129) !important;
+  border-radius: 30px !important;
+  &.p-toast-message-success, &.p-toast-message-error {
+    background: #fff !important;
+    border-width: 0 !important;
+  }
+  &.p-toast-message-error .p-toast-message-icon {
+    color: $primary-color !important;
+  }
+  &.p-toast-message-success .p-toast-message-icon,
+  .p-toast .p-toast-message.p-toast-message-success .p-toast-icon-close {
     background: #00a64e !important;
     border-radius: 40px !important;
     color: #fff !important;
     padding: 0px 6px !important;
     width: 2rem;
+    height: 2rem;
   }
+  
   .p-toast-message-content .p-toast-message-text {
-    font-family: 'GTWalsheimPro-Medium', sans-serif;
-    font-size: 16px;
+    font-family: $subheading-font;
+    font-size: 18px;
+    color: #151515 !important;
+    @media only screen and (max-width: 990px) { 
+      font-size: 15px;
+    }
+    .p-toast-detail {
+      margin-top: 0.2rem !important;
+    }
   }
   .pi-check:before {
     font-size: 20px;
-    top: -3px!important;
+    top: -3px !important;
     position: relative;
-}
-.pi-times:before {
-  font-size: 20px;
-  color: #000;
-}
-&.p-toast-icon-close:hover {
-  background: none;
+    @media only screen and (max-width: 990px) {
+      top: 5px !important;
+    }
+  }
+  .pi-times:before {
+    font-size: 20px;
+    color: #000;
+    right: 5px !important;
+    position: absolute !important;
+    top: 8px !important;
+  }
+  &.p-toast-icon-close:hover {
+    background: none;
+    width: 40px !important;
+  }
 }
 
-}

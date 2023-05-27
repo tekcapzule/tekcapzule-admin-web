@@ -34,7 +34,7 @@
             mat-cell
             [class]="column.clazz"
             *matCellDef="let element"
-            [innerText]="element[column.columnId]"
+            [innerText]="element[column.columnId] ? element[column.columnId] : '-'"
           ></td>
         </ng-container>
         <ng-template #actionCellTemplate>
