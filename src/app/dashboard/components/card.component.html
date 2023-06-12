@@ -1,20 +1,5 @@
-<div class="capsule-card-container card">
-  <div class="card-flipper">
-    <div class="capsule-card card-front">
-      <div class="card-content" (click)="onCardClick()">
-        <div class="title-icon">
-          <span [ngClass]="card.uniqueId+'-icon'" aria-label="read highlights"></span>
-        </div>
-        <div class="title">
-          {{ card.displayName }}
-        </div>
-        <div class="description" (click)="onCardClick()">
-          <p>
-            {{ card.count }}
-          </p>
-        </div>
-
-      </div>
-    </div>
-  </div>
+<div class="dashboard-tile" (click)="onCardClick()">
+  <img src='{{"/assets/images/" + card.icon + ".svg" }}' />
+  <h5>{{ card.displayName }}</h5>
+  <h2>{{card.count}}</h2>
 </div>
