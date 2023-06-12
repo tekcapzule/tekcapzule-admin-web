@@ -1,68 +1,19 @@
 @import './../../../assets/styles/variables.scss';
 
-/* Capsule Card Styles - Start */
-.capsule-card-container {
-  width: 200px;
-  height: 200px;
-  text-align: center;
-  background-color: transparent !important;
-  border: none !important;
+.dashboard-tile{
+  background-color: #fff;
+  height: 300px;
+  display: flex;
+  margin-top: 30px;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
   cursor: pointer;
-}
-
-.capsule-card {
-  width: 100%;
-  height: 100%;
-  box-shadow: 0px 3px 20px #0000000f;
-  border-radius: 20px;
-  transition: 1s;
-  background: #fff;
-  margin-bottom: 10px;
-  border: 1px solid #cbcbcb;
-    
-  .card-content {
-    .title {
-      font-size: 20px;
-      font-family: $cardtitle-font;
-      line-height: 23px;
-      margin-top: 20px;
-      margin-bottom: 20px;
-      p {
-        font-family: $primary-font-medium;
-        font-size: 14px;
-        span {
-          font-family: $primary-font-regular;
-          color: #9b9b9b;
-        }
-      }
-    }
-    .description {
-      font-family: $primary-font-light;
-      font-size: 20px;
-      min-height: 50px !important;
-      height: -webkit-fit-content;
-      @media only screen and (min-device-width: 375px)and (max-device-width: 414px) {
-        min-height: 222px !important;
-      }
-    }
-    .title-icon {
-      span {
-        background: url("../../../assets/images/flip-icon.svg") no-repeat;
-        width: 25px;
-        height: 23px;
-        margin: 4px 0px 4px 6px;
-      }
-    }
+  svg{
+    width: 80px;
   }
-  @media only screen and (max-width: 768px) {
-    margin: 0 0px;
-  }
-  &:hover {
-    // transform: scale(1.05);
-    box-shadow: 0px 0 30px rgb(1 41 112 / 10%);
-    // backface-visibility: hidden;
-    @media only screen and (max-width: 768px) {
-      transform: none;
-    }
+  h5{
+    margin-top: 15px;
+    font-size: 18px;
   }
 }
