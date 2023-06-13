@@ -355,23 +355,21 @@
               <ng-container formArrayName="timeline">
                 <ng-container *ngFor="let tm of timeline; let i = index">
                   <div [formGroup]="tm" class="my-2 d-flex align-items-center pb-2">
-                    <input
+                    <!--input
                       type="date"
                       id="year"
                       name="year"
                       formControlName="title"
                       class="date-control"
                       placeholder="DD/MM/YY"
-                    >
-                    <!--mat-form-field>
-                      <input matInput [matDatepicker]="dp" [formControl]="title">
-                      <mat-datepicker-toggle matIconSuffix [for]="dp"></mat-datepicker-toggle>
-                      <mat-datepicker #dp
-                                      startView="multi-year"
-                                      (monthSelected)="setMonthAndYear($event, dp)"
-                                      panelClass="example-month-picker">
+                    /-->
+                    <mat-form-field>
+                      <input matInput [matDatepicker]="dp" formControlName="title" 
+                      >
+                      <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
+                      <mat-datepicker #dp startView="multi-year" (yearSelected)="chosenYearHandler($event, dp, tm)" panelClass="example-month-picker">
                       </mat-datepicker>
-                    </!--mat-form-field-->
+                    </mat-form-field>
                     
                     
                     <input

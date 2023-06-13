@@ -17,6 +17,10 @@ import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTabsModule } from '@angular/material/tabs';
 import {MatChipsModule} from '@angular/material/chips';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatInputModule} from '@angular/material/input';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatNativeDateModule} from '@angular/material/core';
 import { MessageService } from 'primeng/api';
 import { SubscriptionComponent } from './components/subscription/subscription.component';
 
@@ -41,6 +45,10 @@ import { SubscriptionComponent } from './components/subscription/subscription.co
     MatButtonModule,
     MatTabsModule,
     MatChipsModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
     SharedModule,
     AdminRoutingModule
   ],
