@@ -5,18 +5,57 @@ import { Router } from '@angular/router';
 import { AppSpinnerService, ChannelEvent, EventChannelService, TekByteApiService, TopicApiService } from '@app/core';
 import { TopicCategoryItem, TopicItem } from '@app/shared/models';
 import { TekByteItem } from '@app/shared/models/tekbyte-item.model';
-import * as moment from 'moment';
+import * as _moment from 'moment';
 import { Create_TekByte } from './create-tekbyte.constants';
 import { COMMA, ENTER } from '@angular/cdk/keycodes';
 import { MatChipInputEvent } from '@angular/material/chips';
 import { MessageService } from 'primeng/api';
-import { HelperService } from '@app/core/services/common/helper.service';
+
+import {
+  MomentDateAdapter,
+  MAT_MOMENT_DATE_ADAPTER_OPTIONS,
+} from '@angular/material-moment-adapter';
+import {
+  DateAdapter,
+  MAT_DATE_FORMATS,
+  MAT_DATE_LOCALE,
+} from '@angular/material/core';
+import { default as _rollupMoment, Moment } from 'moment';
+
+const moment = _rollupMoment || _moment;
+
+export const MY_FORMATS = {
+  parse: {
+    dateInput: 'YYYY',
+  },
+  display: {
+    dateInput: 'YYYY',
+    monthYearLabel: 'YYYY',
+    dateA11yLabel: 'LL',
+    monthYearA11yLabel: 'YYYY',
+  },
+};
+
 
 @Component({
   selector: 'app-create-tekbyte',
   templateUrl: './create-tekbyte.component.html',
   styleUrls: ['./create-tekbyte.component.scss'],
+  providers: [
+    // `MomentDateAdapter` can be automatically provided by importing `MomentDateModule` in your
+    // application's root module. We provide it at the component level here, due to limitations of
+    // our example generation script.
+    {
+      provide: DateAdapter,
+      useClass: MomentDateAdapter,
+      deps: [MAT_DATE_LOCALE, MAT_MOMENT_DATE_ADAPTER_OPTIONS],
+    },
+
+    { provide: MAT_DATE_FORMATS, useValue: MY_FORMATS },
+  ]
 })
+
+
 export class CreateTekByteComponent implements OnInit, AfterViewInit {
   isEditMode = false;
   tabIndex = 0;
@@ -191,7 +230,7 @@ export class CreateTekByteComponent implements OnInit, AfterViewInit {
       this.spinner.show();
       const requestBody = this.tekByteFormGroup.value;
       requestBody.timeline.forEach(tm => {
-        tm.title = moment(tm.title).format('DD/MM/YYYY')
+        tm.title = _moment(tm.title).format('DD/MM/YYYY')
       });
       if (this.isEditMode) {
         this.tekByteAPI.updateTekByte(requestBody).subscribe(res => {
@@ -233,11 +272,21 @@ export class CreateTekByteComponent implements OnInit, AfterViewInit {
 
   remove(tag: string): void {
     const index = this.tagsValue.indexOf(tag);
-
     if (index >= 0) {
       this.tagsValue.splice(index, 1);
+    }    
+  }
+
+  chosenYearHandler(normalizedYear: Moment, dp: any, tm: FormGroup) {
+    const ctrlValue = tm.controls['title'].value;
+    if (ctrlValue) {
+      ctrlValue.year(normalizedYear.year());
+      tm.controls['title'].setValue(ctrlValue);
+    } else {
+      tm.controls['title'].setValue(normalizedYear);
     }
-    
+    dp.close();
+    console.log(tm.get('title').value);
   }
 
 }
