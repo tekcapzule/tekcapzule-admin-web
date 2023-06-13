@@ -6,8 +6,6 @@ export const Create_TekByte = {
   'Facts & Future',
   '3 Key Concepts',
   'Applications',
-  'Trends',
-  'Challenges',
   'Story So Far',
   ]
 };
