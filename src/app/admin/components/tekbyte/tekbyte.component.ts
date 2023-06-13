@@ -100,7 +100,7 @@ export class TekByteComponent implements OnInit {
 
   editActionCallback(row: TekByteItem): void {
     sessionStorage.setItem('tekbyteCode', row.code);
-    this.router.navigate(['tekbyte/edittekbyte']);
+    this.navigateToPage('admin/tekbyte/edittekbyte');
   }
 
   deleteActionCallback(row: TekByteItem): void {
@@ -111,7 +111,7 @@ export class TekByteComponent implements OnInit {
     this.tekByteTable.onSearch(event.currentTarget.value);
   }
   
-  navigateToCapsulePage(url: string): void {
-    this.router.navigate([url]);
+  navigateToPage(url: string): void {
+    this.router.navigateByUrl(url);
   }
 }

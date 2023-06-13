@@ -91,8 +91,6 @@ export class CreateTekByteComponent implements OnInit, AfterViewInit {
       wayForward: [''],
       keyConcepts: this.getKeyConceptFormArray(),
       applications: this.fb.array([this.getTitleAndDescFormGroup()]),
-      currentTrends: this.fb.array([this.getTitleAndDescFormGroup()]),
-      challenges: this.fb.array([this.getTitleAndDescFormGroup()]),
       timeline: this.fb.array([
         this.fb.group({
           title: [''],
@@ -131,11 +129,6 @@ export class CreateTekByteComponent implements OnInit, AfterViewInit {
     return formArray.controls as FormGroup[];
   }
 
-  get currentTrends(): FormGroup[] {
-    const formArray = this.tekByteFormGroup?.get('currentTrends') as FormArray;
-    return formArray.controls as FormGroup[];
-  }
-
   get applications(): FormGroup[] {
     const formArray = this.tekByteFormGroup?.get('applications') as FormArray;
     return formArray.controls as FormGroup[];
@@ -146,10 +139,6 @@ export class CreateTekByteComponent implements OnInit, AfterViewInit {
     return formArray.controls as FormGroup[];
   }
 
-  get challenges(): FormGroup[] {
-    const formArray = this.tekByteFormGroup?.get('challenges') as FormArray;
-    return formArray.controls as FormGroup[];
-  }
   addStoryFormArray() {
     if (this.timeline.length < 10) {
       const timelineGp = this.fb.group({
