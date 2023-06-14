@@ -42,15 +42,11 @@ export const MY_FORMATS = {
   templateUrl: './create-tekbyte.component.html',
   styleUrls: ['./create-tekbyte.component.scss'],
   providers: [
-    // `MomentDateAdapter` can be automatically provided by importing `MomentDateModule` in your
-    // application's root module. We provide it at the component level here, due to limitations of
-    // our example generation script.
     {
       provide: DateAdapter,
       useClass: MomentDateAdapter,
       deps: [MAT_DATE_LOCALE, MAT_MOMENT_DATE_ADAPTER_OPTIONS],
     },
-
     { provide: MAT_DATE_FORMATS, useValue: MY_FORMATS },
   ]
 })
@@ -79,11 +75,11 @@ export class CreateTekByteComponent implements OnInit, AfterViewInit {
 
   ngOnInit(): void {
     this.spinner.show();
+    this.createTopicFormGroup();
     if (this.router.url.includes('edittekbyte')) {
       this.isEditMode = true;
       this.getTekByte();
     }
-    this.createTopicFormGroup();
     this.getAllTopics();
   }
 
@@ -91,6 +87,7 @@ export class CreateTekByteComponent implements OnInit, AfterViewInit {
     const tekbyteCode = sessionStorage.getItem('tekbyteCode');
     this.tekByteAPI.getTekByte(tekbyteCode).subscribe(data => {
       this.tekbyte = data;
+      this.tekByteFormGroup.patchValue(data);
       console.log(' tekbyte ------>> ', tekbyteCode, this.tekbyte);
     });
   }
@@ -118,7 +115,7 @@ export class CreateTekByteComponent implements OnInit, AfterViewInit {
       title: ['', Validators.required],
       imageUrl: ['', Validators.required],
       summary: ['', Validators.required],
-      categories: ['', Validators.required],
+      categories: [''],
       description: ['', Validators.required],
       aliases: ['', Validators.required],
       goldenCircle: this.fb.group({
@@ -229,6 +226,7 @@ export class CreateTekByteComponent implements OnInit, AfterViewInit {
     if (this.tekByteFormGroup.valid) {
       this.spinner.show();
       const requestBody = this.tekByteFormGroup.value;
+      requestBody.aliases = this.tagsValue;
       requestBody.timeline.forEach(tm => {
         tm.title = _moment(tm.title).format('DD/MM/YYYY')
       });
@@ -241,6 +239,7 @@ export class CreateTekByteComponent implements OnInit, AfterViewInit {
           this.spinner.hide();
         });
       } else {
+        delete requestBody.code;
         this.tekByteAPI.createTekByte(requestBody).subscribe((res) => {
           this.messageService.add({ key: 'tc', severity: 'success', summary: 'Success', detail: 'TekByte updated successfully'});
           this.spinner.hide();

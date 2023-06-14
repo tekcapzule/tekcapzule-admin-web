@@ -38,7 +38,7 @@ export class TekByteComponent implements OnInit {
       columnName: 'Tags',
       disableSort: true,
       columnFormatter: (tags: string[]) => {
-        if (tags) {
+        if (tags && typeof tags === 'object' && tags.length) {
           return tags
             .map(
               tag => `
