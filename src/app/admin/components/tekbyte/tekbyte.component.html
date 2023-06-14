@@ -1,23 +1,19 @@
 <app-spinner></app-spinner>
-<div class="admin-topics-table">
-
-  <div class="col-lg-6 col-md-6 col-sm-12 resp-btn">
-    <div class="col-lg-3 float-left">
-      <div class="search-box">
-        <input type="search" name="search" placeholder="What are you looking for?" (keyup)="onSearch($event)"/>
-      </div>
-    </div>
-  
-    <div class="float-right p-3">
-      <button mat-stroked-button class="button secondary-btn-sm action-btn" (click)="navigateToPage('admin/tekbyte/createtekbyte')">
-        Create TekByte
-      </button>
+<div class="admin-table">
+  <div class="create-btn">
+    <button class="button secondary-btn-sm action-btn"
+      (click)="navigateToPage('admin/tekbyte/createtekbyte')">
+      Create TekByte
+    </button>
+  </div>
+  <div class="col-lg-12">
+    <div class="search-box">
+      <input type="search" name="search" placeholder="What are you looking for?" (keyup)="onSearch($event)" />
+      <i class="pi pi-search"></i>
     </div>
   </div>
 
   <div>
-
-    
     <app-data-table #tekByteTable [columns]="tekByteColumns" [data]="tekByteData"></app-data-table>
   </div>
 </div>
