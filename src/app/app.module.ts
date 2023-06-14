@@ -16,6 +16,7 @@ import { CoreModule } from './core';
 import { AuthModule } from './auth';
 import { DashboardModule } from './dashboard/dashboard.module';
 import { URLService } from './core/services/common/url.service';
+import { MomentDateModule } from '@angular/material-moment-adapter';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { URLService } from './core/services/common/url.service';
     AdminModule,
     CoreModule,
     SharedModule,
+    MomentDateModule,
     AuthModule
   ],
   providers: [
