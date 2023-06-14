@@ -1,10 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { filter, takeUntil } from 'rxjs/operators';
-import { Subject } from 'rxjs';
 
-import { ChannelEvent, EventChannelService } from '@app/core';
+import { NavigationEnd, Router } from '@angular/router';
 import { NavTab } from '@app/shared/models';
-import { NavigationEnd, NavigationStart, Router } from '@angular/router';
 import { Card } from '@app/shared/models/card.model';
 import { Constants } from '@app/shared/utils';
 
